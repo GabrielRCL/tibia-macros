@@ -139,6 +139,15 @@ Em OTServers (Open Tibia), verifique as regras específicas de cada servidor —
 
 ---
 
+## Apoie o projeto / Support
+
+Este projeto é open-source e 100% gratuito. Se ele te economizou tempo ou foi útil de alguma forma, você pode apoiar o autor original com uma "doação cafezinho" — totalmente voluntária e independente do código, que continua sob licença MIT.
+
+- ☕ **Buy me a coffee (Stripe)** — [donate.stripe.com/4gw28Vam6a5n1UY8wD](https://donate.stripe.com/4gw28Vam6a5n1UY8wD)
+- ⚡ **Lightning Network** — *em breve / coming soon* (BTCPayServer em configuração no node próprio)
+
+---
+
 ## Contribuindo
 
 **Projeto descontinuado pelo autor original. Sinta-se à vontade para fork e contribuir.**
