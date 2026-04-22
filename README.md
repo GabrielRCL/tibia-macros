@@ -2,7 +2,9 @@
 
 Macro/bot de automação para o MMORPG **Tibia**, escrito em **AutoHotkey v1.1 (Unicode 64-bit)**. Projeto originalmente comercial, agora liberado como open-source após o encerramento do suporte.
 
-> ⚠️ **Projeto arquivado — sem suporte ativo.** O código é disponibilizado *as-is*, para fins educacionais e de referência. Toda a infraestrutura original (API de licenças, CDN de auto-update) foi removida — o macro agora roda 100% localmente.
+> ⚠️ **Projeto descontinuado pelo autor original. Sinta-se à vontade para fork e contribuir.**
+>
+> O código é disponibilizado *as-is*, para fins educacionais e de referência. Toda a infraestrutura original (API de licenças, CDN de auto-update) foi removida — o macro agora roda 100% localmente.
 
 ---
 
@@ -85,7 +87,7 @@ Captura de tela → OCR → ação
 | Versão | Pasta | Status |
 |---|---|---|
 | OtServer (genérico) | [versions/OtServer/](versions/OtServer/) | Mais completo — 13 modelos, controllers com validação, MVC completo |
-| NTSW | [versions/NTSW/](versions/NTSW/) | Legado — estrutura em arquivo único |
+| [NTSW](https://ntsw.pl/) (Naruto Tibia Otserver) | [versions/NTSW/](versions/NTSW/) | Legado — estrutura em arquivo único |
 | PvP Only | [versions/PvP%20Only/](versions/PvP%20Only/) | Especializado em combate (flower, trash, push item) |
 | v7.4 | [versions/v7.4/](versions/v7.4/) | Cliente antigo 7.x — runemaker, healing minimal |
 
@@ -139,7 +141,9 @@ Em OTServers (Open Tibia), verifique as regras específicas de cada servidor —
 
 ## Contribuindo
 
-O projeto está **sem manutenção ativa** — issues e PRs podem não ser respondidos. Forks são bem-vindos e encorajados.
+**Projeto descontinuado pelo autor original. Sinta-se à vontade para fork e contribuir.**
+
+Issues e PRs podem não ser respondidos no repositório original. Se você quer manter o projeto vivo, **faça um fork** — sob a [licença MIT](LICENSE) você pode continuar o desenvolvimento livremente.
 
 Áreas que precisam de trabalho para quem quiser continuar:
 - Port para AutoHotkey v2 (atualmente só roda em v1.1)
