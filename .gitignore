@@ -1,0 +1,30 @@
+# Built / compiled AHK executables
+*.exe
+*.lnk
+
+# Archives
+*.rar
+*.zip
+
+# User configuration (generated at runtime)
+conf/
+Configs/
+
+# Debug / runtime output
+*.log
+*.bak
+DeBug.png
+
+# Secrets
+.env
+.env.*
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
