@@ -215,10 +215,10 @@ GroupAdd, Tibia, ahk_class DeusOT
 	EXITAPP
 
 	; Includes ================================================================================
-	#Include ..\..\libs\bcrypt.ahk
-	#Include ..\..\libs\GDIP.ahk
-	#Include ..\..\libs\JSON.ahk
-	#Include ..\..\libs\PrintScreen.ahk
+	#Include %A_ScriptDir%\..\..\libs\bcrypt.ahk
+	#Include %A_ScriptDir%\..\..\libs\GDIP.ahk
+	#Include %A_ScriptDir%\..\..\libs\JSON.ahk
+	#Include %A_ScriptDir%\..\..\libs\PrintScreen.ahk
 
 	; Functions (Controllers) ==============================================================================
 	#Include controllers\battle_list.ahk
@@ -444,6 +444,16 @@ GroupAdd, Tibia, ahk_class DeusOT
 
 		; [Telegram]
 		StartTime_TelegramBot := -1
+	}
+
+	ReadINI() {
+		GLOBAL
+		loginIni := A_ScriptDir . "\..\..\conf\Login.ini"
+		IniRead, TibiaServer,         %loginIni%, Login, TibiaServer
+		IniRead, UserName,            %loginIni%, Login, UserName
+		IniRead, Vocation,            %loginIni%, Login, Vocation
+		IniRead, screen_capture_mode, %loginIni%, Login, screen_capture_mode
+		IniRead, GlobalLanguage,      %loginIni%, Login, GlobalLanguage
 	}
 
 	Draw_Gui_Main() {

@@ -158,11 +158,11 @@ RunSelectedVersion() {
 	global
 	GuiControlGet, TibiaServer
 
-	scriptPath := A_ScriptDir . "\versions\" . TibiaServer
+	versionDir := A_ScriptDir . "\versions\" . TibiaServer
 	if (TibiaServer = "NTSW") {
-		scriptPath .= "\NTSW.ahk"
+		scriptPath := versionDir . "\NTSW.ahk"
 	} else {
-		scriptPath .= "\main.ahk"
+		scriptPath := versionDir . "\main.ahk"
 	}
 
 	if not FileExist(scriptPath) {
@@ -171,9 +171,9 @@ RunSelectedVersion() {
 	}
 
 	if A_IsCompiled {
-		Run, "%scriptPath%"
+		Run, "%scriptPath%", %versionDir%
 	} else {
-		Run, "%A_AhkPath%" "%scriptPath%"
+		Run, "%A_AhkPath%" "%scriptPath%", %versionDir%
 	}
 	ExitApp
 }

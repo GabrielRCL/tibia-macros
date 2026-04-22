@@ -57,9 +57,9 @@ RETURN
 
 
 ; LIBS ==================================================================================
-#Include ..\..\libs\GDIP.ahk
-#Include ..\..\libs\JSON.ahk
-#Include ..\..\libs\PrintScreen.ahk
+#Include %A_ScriptDir%\..\..\libs\GDIP.ahk
+#Include %A_ScriptDir%\..\..\libs\JSON.ahk
+#Include %A_ScriptDir%\..\..\libs\PrintScreen.ahk
 
 ; Functions (MODELS) ==============================================================================
 #Include models\core.ahk
