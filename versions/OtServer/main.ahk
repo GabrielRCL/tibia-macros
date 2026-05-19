@@ -128,9 +128,11 @@ GroupAdd, Tibia, ahk_class DeusOT
 	Load_All_GUIs()
 	Gui, Main:Show, xCenter yCenter w%GUIWidth% h%GUIHeight% NoActivate, %TrayName%	;NAME PROGRAMA
 	SelectClient:
-		Load_Images()		;LOAD GDIP IMAGES
-		Save_And_Load_Configs("load_config")
 		SelectClient()
+		if (!ConfigsLoaded) {
+			Save_And_Load_Configs("load_config")
+			ConfigsLoaded := true
+		}
 		SelectHaystack()
 		SetTimer, EngineLoop, 50
 		; NEED 2 LOOPS TO WORKS
@@ -653,10 +655,13 @@ GroupAdd, Tibia, ahk_class DeusOT
 		if (client_ahk_class = "DeusOT") {
 			screen_capture_mode := "PrintDC"
 			Load_Images_DeusOT()
+			RETURN
 		}
 		if (RegExMatch(client_ahk_class, "shadowillusionOfficialV")) {
 			screen_capture_mode := "PrintDC"
 			TibiaServer := "Shadow-Illusion"
 			Load_Images_ShadowIllusion()
+			RETURN
 		}
+		Load_Images()
 	}
