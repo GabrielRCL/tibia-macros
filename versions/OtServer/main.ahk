@@ -83,6 +83,8 @@ if (CheckBox_NoDelayActions == 1 && TibiaServer != "Global") {
 }
 
 ; Groups ================================================================================
+; Note: SetTitleMatchMode RegEx allows partial/regex matching for ahk_class
+SetTitleMatchMode, RegEx
 GroupAdd, DreamBot, ahk_class Qt5QWindowOwnDCIcon	;used in Shift+F12 HIDE ALL GUI
 GroupAdd, DreamBot, ahk_exe client.exe	;used in Shift+F12 HIDE ALL GUI
 GroupAdd, DreamBot, ahk_exe Tibia.exe	;used in Shift+F12 HIDE ALL GUI
@@ -102,7 +104,7 @@ GroupAdd, Tibia, ahk_class Like-Retro
 GroupAdd, Tibia, ahk_exe Calmera.exe
 GroupAdd, Tibia, ahk_class Qt5158QWindowOwnDCIcon
 GroupAdd, Tibia, ahk_class Qt663QWindowIcon ;Arcana GOLD
-GroupAdd, Tibia, ahk_class shadowillusionOfficialV4
+GroupAdd, Tibia, ahk_class shadowillusionOfficialV
 GroupAdd, Tibia, ahk_class Gods Of Rising
 GroupAdd, Tibia, ahk_class Realera
 GroupAdd, Tibia, ahk_exe rubinot_dx.exe	;RubinOT
@@ -652,7 +654,7 @@ GroupAdd, Tibia, ahk_class DeusOT
 			screen_capture_mode := "PrintDC"
 			Load_Images_DeusOT()
 		}
-		if (client_ahk_class = "shadowillusionOfficialV4") {
+		if (RegExMatch(client_ahk_class, "shadowillusionOfficialV")) {
 			screen_capture_mode := "PrintDC"
 			TibiaServer := "Shadow-Illusion"
 			Load_Images_ShadowIllusion()

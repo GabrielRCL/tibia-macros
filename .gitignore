@@ -1,5 +1,5 @@
 # Built / compiled AHK executables
-*.exe
+# *.exe
 *.lnk
 
 # Archives

@@ -31,17 +31,21 @@ Automação por **captura de tela + pattern matching (OCR)**: detecta barras de 
 
 ## Como usar
 
-1. Instale o **[AutoHotkey v1.1 Unicode 64-bit](https://www.autohotkey.com/download/ahk-v1.1.zip)** (v2 é incompatível)
-2. Clone o repositório:
+O repositório já inclui o runtime do AutoHotkey ([libs/AutoHotkeyU64.exe](libs/AutoHotkeyU64.exe)), então **você não precisa instalar o AutoHotkey** — basta clonar e rodar.
+
+1. Clone o repositório:
    ```bash
    git clone https://github.com/GabrielRCL/tibia-macros.git
    cd tibia-macros
    ```
-3. Rode [loader.ahk](loader.ahk) **como administrador** (privilégios são exigidos para `ControlSend` e hooks):
+2. Rode [loader.ahk](loader.ahk) **como administrador** (privilégios são exigidos para `ControlSend` e hooks):
    ```
-   AutoHotkey.exe loader.ahk
+   libs\AutoHotkeyU64.exe loader.ahk
    ```
-4. Selecione vocação, servidor e idioma na tela inicial e clique em **Start**.
+   Ou, se você usa o `loader.exe` compilado, basta dar duplo clique nele — o próprio loader chama o `AutoHotkeyU64.exe` empacotado para abrir a versão escolhida.
+3. Selecione vocação, servidor e idioma na tela inicial e clique em **Start**.
+
+> Se preferir usar uma instalação própria do AutoHotkey, baixe o **[AutoHotkey v1.1 Unicode 64-bit](https://www.autohotkey.com/download/ahk-install.exe)** (v2 é incompatível).
 
 O loader salva a configuração em `conf/Login.ini` e executa o script da versão selecionada.
 
@@ -101,11 +105,11 @@ O **OtServer** também detecta automaticamente `Shadow-Illusion` e `DeusOT` pela
 .
 ├── loader.ahk              # tela de login inicial
 ├── libs/                   # bibliotecas compartilhadas
+│   ├── AutoHotkeyU64.exe   # runtime AHK v1.1 bundled (dispensa instalacao)
 │   ├── GDIP.ahk            # wrapper GDI+ (captura de tela, pattern matching)
 │   ├── JSON.ahk
 │   ├── bcrypt.ahk
-│   ├── PrintScreen.ahk     # captura pixel-perfect (PrintPW / PrintDC)
-│   └── Download_File_Progress.ahk
+│   └── PrintScreen.ahk     # captura pixel-perfect (PrintPW / PrintDC)
 ├── versions/               # um diretório por servidor suportado
 │   ├── OtServer/
 │   ├── NTSW/
@@ -124,7 +128,7 @@ O **OtServer** também detecta automaticamente `Shadow-Illusion` e `DeusOT` pela
 
 | Dependência | Uso |
 |---|---|
-| AutoHotkey **v1.1 Unicode 64-bit** | Interpretador (v2 é incompatível) |
+| AutoHotkey **v1.1 Unicode 64-bit** | Já incluso em [libs/AutoHotkeyU64.exe](libs/AutoHotkeyU64.exe). Instalação separada é opcional (v2 é incompatível) |
 | Windows 7 / 10 / 11 | DllCalls e WMI são específicos do Windows |
 | Privilégios de admin | `ControlSend` e hooks exigem elevação |
 | GDI+ (nativo do Windows) | Captura + pattern matching via [GDIP.ahk](libs/GDIP.ahk) |

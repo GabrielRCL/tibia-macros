@@ -34,9 +34,9 @@ LocateHPBar(){
 
 			;ARColor is found in coord: 12,8 (Total:18x18).
 			ArColor.Conditions := {	EatFood: CorToDec("#F6D48F"),		Haste: CorToDec("#876a3d"),			EnergyRing: CorToDec("#272DCC"),	LogoutBlock: CorToDec("#7E7E83")
-			,					CureParalyze: CorToDec("#E90404"),		CureBurning: CorToDec("#FECD0B"),	ProtectionZone: CorToDec("#FFFFFF")
-			,					CureParalyze2: CorToDec("#FF0000"),		CureCurse: CorToDec("#0A0A0A"),		CurePoison: CorToDec("#35e24d")
-			,					UtamoVita: CorToDec("#272DCC"), 		Strength: CorToDec("#233922")}
+				,					CureParalyze: CorToDec("#E90404"),		CureBurning: CorToDec("#FECD0B"),	ProtectionZone: CorToDec("#FFFFFF")
+				,					CureParalyze2: CorToDec("#FF0000"),		CureCurse: CorToDec("#0A0A0A"),		CurePoison: CorToDec("#35e24d")
+				,					UtamoVita: CorToDec("#272DCC"), 		Strength: CorToDec("#233922")}
 
 			return True
 		}
@@ -62,7 +62,7 @@ Verify_HP(){
 		1x := Cords.HP.2+13 , 1y := Cords.HP.3+5
 		2x := 1x            , 2y := 1y+11
 		HpMpPixels:=90
-		
+
 		PixelsRestantes := 1
 		Loop, % HpMpPixels+1 {
 			1gx:=1x-A_Index+HpMpPixels+1
@@ -74,7 +74,7 @@ Verify_HP(){
 			; ClipBoard := Color
 			; Sleep 25
 			; KeyWait, Control
-			; ; [DEBUGGER] FINISH 
+			; ; [DEBUGGER] FINISH
 
 			If (Color == ArColor.Status.HP){
 				PixelsRestantes := HpMpPixels-A_Index+1
@@ -94,11 +94,12 @@ Verify_HP(){
 		Loop, % HpMpPixels {
 			1gx:=1x+HpMpPixels-A_Index
 			Color := GetColorDecimal(1gx, 1y)
-			MouseMove(1gx, 1y)
-			ColorHex := GetColorHex(1gx, 1y)
-			ClipBoard := ColorHex
-			ToolTip(ColorHex)
-			sleep 250
+
+			; MouseMove(1gx, 1y)
+			; ColorHex := GetColorHex(1gx, 1y)
+			; ClipBoard := ColorHex
+			; ToolTip(ColorHex)
+			; sleep 250
 
 			If (Color = ArColor.Status.HP) {
 				Data.HP := HpMpPixels-A_Index
@@ -111,7 +112,6 @@ Verify_HP(){
 		Data.HP := Floor( Data.HP / (174/100) )
 	}
 
-
 	; ToolTip("Data.HP : " Data.HP "`nData.MP: " Data.MP,Time:=-500,X:=500,Y:=500,WhichToolTip:=04)
 	; HUD CAVEBOT STATUS
 	GuiControl, HUD_CaveBot_Status:, HealthBar_CaveBot_HUD, % Data.HP
@@ -119,20 +119,20 @@ Verify_HP(){
 Verify_MP(){
 	GLOBAL
 
-	if (TibiaServer = "OTClient" or client_ahk_class = "DeusOT") {		
+	if (TibiaServer = "OTClient" or client_ahk_class = "DeusOT") {
 		Data.MP := 0
 		found_pixel := False
-		Loop, % HpMpPixels {			
+		Loop, % HpMpPixels {
 			2gx:=2x+HpMpPixels-A_Index
 			Color:=GetColorDecimal(2gx, 2y)
-			
+
 			; ~ [DEBUGGER] START
 			; MouseMove, % 2gx + WindowInfo.ClassNN.x, % 2y + WindowInfo.ClassNN.y
 			; TOOLTIP % Color
 			; ClipBoard := Color
 			; Sleep 25
 			; KeyWait, Control
-			; ~ [DEBUGGER] FINISH 
+			; ~ [DEBUGGER] FINISH
 
 			Color_List_MP := [4281742247]	;cores que bugam no processo
 			for Each, rColor in Color_List_MP {
@@ -145,11 +145,11 @@ Verify_MP(){
 
 			; A_Index precisa ser do Loop (2)
 			if (found_pixel) {
-				PixelsRestantes := HpMpPixels-A_Index+1		
+				PixelsRestantes := HpMpPixels-A_Index+1
 				Break
-			} 
-		}	
-		
+			}
+		}
+
 		Data.MP := Floor( (PixelsRestantes / HpMpPixels) * 100 )
 		; ToolTip("Data.HP : " Data.HP "`nData.MP: " Data.MP,Time:=-500,X:=500,Y:=500,WhichToolTip:=04)
 		GuiControl, HUD_CaveBot_Status:, ManaBar_CaveBot_HUD, % Data.MP
@@ -157,7 +157,7 @@ Verify_MP(){
 	}
 
 	if (TibiaServer = "Global" or TibiaServer = "OtServer") {
-		
+
 		PixelsRestantes := 1
 		Loop, % HpMpPixels+1 {
 			2gx:=2x+HpMpPixels-A_Index+1
@@ -169,21 +169,19 @@ Verify_MP(){
 			; ClipBoard := Color
 			; Sleep 25
 			; KeyWait, Control
-			; ~ [DEBUGGER] FINISH 
+			; ~ [DEBUGGER] FINISH
 
 			If (Color == ArColor.Status.MP){
 				PixelsRestantes := HpMpPixels-A_Index+1
 				Break 1
 			}
-		}	
-		
+		}
 
 		Data.MP := Floor( (PixelsRestantes / HpMpPixels) * 100 )
 		; ToolTip("Data.HP : " Data.HP "`nData.MP: " Data.MP,Time:=-500,X:=500,Y:=500,WhichToolTip:=04)
 		GuiControl, HUD_CaveBot_Status:, ManaBar_CaveBot_HUD, % Data.MP
 		RETURN
 	}
-	
 
 	if (TibiaServer = "Shadow-Illusion") {
 		Loop, % HpMpPixels {
@@ -201,7 +199,6 @@ Verify_MP(){
 		Data.MP := Floor( Data.MP / (174/100) )
 	}
 
-
 	; ToolTip("Data.HP : " Data.HP "`nData.MP: " Data.MP,Time:=-500,X:=500,Y:=500,WhichToolTip:=04)
 	;~ msgbox % Color
 
@@ -214,9 +211,9 @@ Healing_Spells(){
 	GLOBAL
 	; Set Delay Spell's by TibiaServer
 	switch TibiaServer {
-		case "Global": Delay_Healing_Spells := 200
-		case "OtServer": Delay_Healing_Spells := -1		;nenhum delay
-		default: Delay_Healing_Spells := 200
+	case "Global": Delay_Healing_Spells := 200
+	case "OtServer": Delay_Healing_Spells := -1		;nenhum delay
+	default: Delay_Healing_Spells := 200
 	}
 
 	; TOOLTIP, % Data.Group["Healing"]
@@ -259,9 +256,9 @@ Healing_Potions(){
 	GLOBAL
 	; Set Delay Spell's by TibiaServer
 	switch TibiaServer {
-		case "Global": Delay_Healing_Potions := 400
-		case "OtServer": Delay_Healing_Potions := 400
-		default: Delay_Healing_Potions := 400
+	case "Global": Delay_Healing_Potions := 400
+	case "OtServer": Delay_Healing_Potions := 400
+	default: Delay_Healing_Potions := 400
 	}
 
 	ElapsedTime_Healing_Potions := A_TickCount - StartTime_Healing_Potions

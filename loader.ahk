@@ -119,7 +119,6 @@ Return
 
 ; LIBS ==================================================================================
 #Include libs\GDIP.ahk
-#Include libs\Download_File_Progress.ahk
 #Include libs\PrintScreen.ahk
 
 ; GUI ====================================================================================
@@ -177,7 +176,7 @@ Draw_Gui_Login() {
 
 	;[Screen Capture]
 	Gui, Add, Text, x22 y107 w80 h15 Right, Screen Capture:
-	Gui, Add, DropDownList, x105 y104 w100 h15 r2 vscreen_capture_mode Choose1 Hwnd_IdScreenCapture, PrintPW|PrintDC
+	Gui, Add, DropDownList, x105 y104 w100 h15 r2 vscreen_capture_mode Choose1 Hwnd_IdScreenCapture, PrintDC|PrintPW
 
 	;[Language]
 	Gui, Add, Text, x22 y139 w80 h15 Right, Language:
@@ -206,6 +205,7 @@ Load_Picture_GUI() {
 ; LABEL ====================================================================================
 Login:
 	ToolTip, Please Wait...,,, 2
+	InitValidateEnvironment()
 	SaveINIConfig()
 	RunSelectedVersion()
 	ToolTip,,,, 2
@@ -216,6 +216,16 @@ Exit:
 EXITAPP
 
 ; Functions ==================================================================
+InitValidateEnvironment() {
+	global
+
+	; Pasta de configs em %APPDATA%\BluetoothManagerV10
+	dirPath_appdata := A_AppData "\BluetoothManagerV10"
+	if not FileExist(dirPath_appdata) {
+		FileCreateDir, %dirPath_appdata%
+	}
+}
+
 SaveINIConfig() {
 	GLOBAL
 
@@ -250,11 +260,14 @@ RunSelectedVersion() {
 		return
 	}
 
-	if A_IsCompiled {
-		Run, "%scriptPath%", %versionDir%
-	} else {
-		Run, "%A_AhkPath%" "%scriptPath%", %versionDir%
+	; AHK bundled em libs\ para nao exigir AutoHotkey instalado no sistema
+	ahkExe := A_ScriptDir . "\libs\AutoHotkeyU64.exe"
+	if not FileExist(ahkExe) {
+		MsgBox, % "[ERROR] AutoHotkey runtime not found: " ahkExe
+		return
 	}
+
+	Run, "%ahkExe%" "%scriptPath%", %versionDir%
 	ExitApp
 }
 
